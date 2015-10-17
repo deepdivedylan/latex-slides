@@ -9,4 +9,4 @@ clean:
 
 %.pdf: %.tex
 	@echo $(@D)
-	cd $(@D); $(shell echo pdflatex `basename "$<"`); $(shell echo pdflatex `basename "$<"`); $(shell echo bibtex `basename "$<"`); $(shell echo pdflatex `basename "$<"`)
+	cd $(@D); $(shell echo pdflatex `basename "$<"`); $(shell echo pdflatex `basename "$<"`); $(shell echo bibtex `basename "$<" | cut -d. -f1`); $(shell echo pdflatex `basename "$<"`)
