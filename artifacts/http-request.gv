@@ -1,0 +1,17 @@
+graph G {
+	graph [fontname="Helvetica", fontsize=24, rankdir="LR"];
+	node [fontname="Helvetica", fontsize=12, shape=plaintext];
+	labelloc="t";
+    label="Anatomy of an HTTP Request";
+	httpRequest [
+		label = "<f0> HTTP Header | <f1> Content\n\n\n\n",
+		shape = "record"
+	];
+	httpHeader [
+		label = "<f0> HTTP Status Code | Date | Content-Type | Cookies | <f1> Other Data\n\n",
+		shape = "record"
+	];
+	
+	httpRequest:f0 -- httpHeader:f0 [style=dashed];
+	httpRequest:f0 -- httpHeader:f1 [style=dashed];
+}

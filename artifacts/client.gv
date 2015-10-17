@@ -1,0 +1,12 @@
+digraph G {
+	graph [fontname="Helvetica"];
+	node [fontname="Helvetica", fontsize=12, shape=plaintext];
+	labelloc="t";
+	label=<<FONT POINT-SIZE="18"><B>Client Side Architecture</B></FONT>>;
+	array [label=<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="1">
+			<TR><TD>HTML Renderer</TD><TD>CSS Layout Engine</TD><TD>JavaScript Engine</TD></TR>
+			<TR><TD COLSPAN="3">Web Browser Engine</TD></TR>
+		</TABLE>
+	>];
+}
