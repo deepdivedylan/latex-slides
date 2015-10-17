@@ -1,0 +1,165 @@
+\documentclass[aspectratio=169]{beamer}
+
+% because we need to claim weird things
+\newtheorem{claim}{Claim}
+\newtheorem{defn}{Definition}
+%\newtheorem{lemma}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{vita}{Vit\ae}
+\newtheorem{qotd}{Quote of the Day}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{ulem}
+\bibliographystyle{unsrt}
+
+% background image
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{../artifacts/stemulus.pdf}%
+}
+\setbeamertemplate{caption}[numbered]
+\lstset{%
+	breaklines=true,
+	captionpos=b,
+	frame=single,
+	keepspaces=true,
+	showstringspaces=false
+}
+
+% page numbers
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+% presentation header
+\usetheme{Warsaw}
+\title{Week 3: Files, Sessions, \& Cookies}
+\author{Dylan Lane McDonald}
+\institute{CNM STEMulus Center\\Web Development with PHP}
+\date{\today}
+
+\begin{document}
+\lstset{language=PHP}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Files}
+\begin{frame}
+\frametitle{Files}
+Files can be uploaded using HTML forms using the \texttt{file} type of the \texttt{<input>} tag. Uploading files presents the following three challenges:
+\begin{enumerate}
+	\item Configuring \texttt{php.ini}
+	\item Protecting against malicious \& incompetent users
+	\item Saving the files to a safe place
+\end{enumerate}
+\pause
+\mbox{}\\
+\texttt{php.ini}'s \texttt{post\_max\_size} and \texttt{max\_filesize} need to be set to size parameters that can accommodate the maximum size of the files you wish to upload. This can be set by the systems administrator. These parameters can \textbf{NOT} be effectively set by the \href{http://us.php.net/manual/en/function.ini-set.php}{\texttt{ini\_set()}} function.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Files: Malicious \& Incompetent Users}
+Always do very restrictive verification on files. Verify \textbf{both} on extension and MIME type.
+\begin{lstlisting}[caption=Verifying a File,label=code:file-verify]
+$goodExts = array("jpg", "png");
+$goodTypes = array("image/jpeg", image/png");
+$name = $_FILES["file"]["name"];
+$extension = end(explode(".", $name));
+$type = $_FILES["file"]["type"];
+if(in_array($extension, $goodExts) === false || in_array($type, $goodTypes) === false) {
+  // bad file: throw an exception?
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Files: Saving Files}
+The file must then be written to a ``safe'' directory that is writable by Apache's ``nobody'' user. A safe directory would be a directory that is:
+\begin{itemize}
+	\item isolated from the rest of the file system
+	\item only accessible to the Apache ``nobody'' user
+	\item constantly monitored by for threats by both humans and anti-virus software
+\end{itemize}
+\pause
+\mbox{}\\
+Once a safe directory has been established, the files can then be saved by using the \href{http://us.php.net/manual/en/function.move-uploaded-file.php}{move\_uploaded\_file()} function. \textbf{Be sure to only move the file after the files has been verified as being secure.}
+\end{frame}
+
+\section{Cookies}
+\begin{frame}
+\frametitle{Cookies}
+\begin{defn}
+A \textbf{cookie} is a variable that is sent with the HTTP headers and is stored locally in the browser and sent to the server.
+\end{defn}
+
+\mbox{}\\
+Sending and receiving this data, user preferences and settings can now persist across pages as the user browses the site.
+
+\mbox{}\\
+Cookies can be set to expire sometime in the future (a persistent cookie) or when the browser is closed (a session cookie).
+
+\mbox{}\\
+The term \textit{cookie} comes from the term \textit{magic cookie}, which is a term for shared data between cooperating programs. ``I give him a packet, he gives me back a cookie.'' \cite{jargon}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Setting Cookies}
+Cookies are set with the HTTP headers, so must, by definition, be sent before any page content is rendered. If one tries to set a cookie after any or all of the content is rendered, this will result in PHP script error. All cookie data is in the superglobal \texttt{\$\_COOKIE}.
+
+\begin{lstlisting}[caption=Setting a Cookie,label=code:cookie]
+// set a session cookie
+setcookie("name", "value");
+// set a one hour persistent cookie
+setcookie("name", "value", time() + 3600);
+// destroy a cookie outright
+setcookie("name", "value", time() - 3600);
+\end{lstlisting}
+\end{frame}
+
+\section{Sessions}
+\begin{frame}
+\frametitle{Sessions}
+\begin{defn}
+A \textbf{session} is a container for persistent or semi-persistent data during the user's experience on the site.
+\end{defn}
+
+\mbox{}\\
+PHP will create a session for the visitor and an associated, system-generated session ID. Once the session is started, the session variables are available in the superglobal \texttt{\$\_SESSION}.
+
+\mbox{}\\
+The session ID is the heart of the session and can be passed via either cookies or as a URL parameter. Cookies are optimal, but PHP will transparently fall back when cookies are unavailable. \cite{php}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{PHP Sessions}
+Like cookies, sessions must be initialized with the HTTP headers, so the session must be setup before any content is generated.
+\begin{lstlisting}[caption=Using a PHP Session,label=code:session]
+// create the session
+session_start();
+// add data to the session
+$_SESSION["foo"] = "bar";
+// delete data from the session
+unset($_SESSION["baz"]);
+// destroy the session
+session_destroy();
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Works Cited}
+\bibliography{files-sessions-cookies}
+\end{frame}
+\end{document}
