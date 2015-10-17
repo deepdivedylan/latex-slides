@@ -1,0 +1,23 @@
+digraph G {
+	/* default settings */
+	graph [fontname="Helvetica", fontsize=24];
+	node [fontname="Helvetica", fontsize=12];
+	edge [arrowhead=vee, fontname="Helvetica"];
+	labelloc="t";
+    label="Unit Testing Process";
+
+	/* nodes */
+	start [label="Start"];
+	moreTests [label="More Tests?", shape=diamond];
+	setUp [label="Execute setUp() Method", shape=box];
+	runTest [label="Execute Test Method", shape=box];
+	tearDown [label="Execute tearDown() Method", shape=box];
+	end [label="Testing Complete"];
+	
+	start -> setUp;
+	setUp -> runTest;
+	runTest -> tearDown;
+	tearDown -> moreTests;
+	moreTests -> end [label="No"];
+	moreTests -> setUp [label="Yes"];
+}
