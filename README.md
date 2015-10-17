@@ -8,7 +8,7 @@ Run the `win-setup-make/install.bat` as an administrator. This will install `mak
 
 **Assumption:** All the following commands have been tested in `git bash`, version 2.5. Execute all commands in `git bash`, as it loads all the dependencies automatically.
 
-The default [http://miktex.org/](MiKTeX) distribution does not include beamer. To install it, build one of the slidesets manually:
+The default [MiKTeX][http://miktex.org/] distribution does not include beamer. To install it, build one of the slidesets manually:
 
 `$ cd foo`
 
