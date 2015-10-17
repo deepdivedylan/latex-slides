@@ -1,0 +1,242 @@
+\documentclass[aspectratio=169]{beamer}
+
+% because we need to claim weird things
+\newtheorem{claim}{Claim}
+\newtheorem{defn}{Definition}
+%\newtheorem{lemma}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{qotd}{Quote of the Day}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{graphics}
+\usepackage{ulem}
+\bibliographystyle{unsrt}
+
+% background image
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{../artifacts/stemulus.pdf}%
+}
+\setbeamertemplate{caption}[numbered]
+
+% page numbers
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+% presentation header
+\usetheme{Warsaw}
+\title{Week 1: Introduction}
+\author{Dylan Lane McDonald}
+\institute{CNM STEMulus Center\\Web Development with PHP}
+\date{\today}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{About Us}
+\begin{frame}
+\frametitle{About Dylan}
+I have been in IT for about 15 years. Highlights of my  career include:
+\begin{itemize}
+	\item Systems Administrator (2002 -- 2004)
+	\item MS/PhD student at Missouri University of Science \& Technology (2006 -- 2011)
+	\item Java Enterprise Developer (2011 -- 2013)
+	\item Freelance Programmer (2006 -- Present)
+	\item Poker \& Backgammon Player (1995 -- Present)
+\end{itemize}
+Follow me: \resizebox{12pt}{!}{\includegraphics{../artifacts/twitter.pdf}} \href{https://twitter.com/deepdivedylan}{@deepdivedylan}
+
+\mbox{}\\
+Anything else you'd like to know? Just ask me\dots
+\end{frame}
+
+\begin{frame}
+\frametitle{About Rochelle}
+Rochelle Lewis: Web Designer and Front End Web Developer\\
+\href{http://www.rochellelewis.com/}{http://www.rochellelewis.com/}\\
+Follow me: \resizebox{12pt}{!}{\includegraphics{../artifacts/twitter.pdf}} \href{https://twitter.com/rochellelewisUXUI}{@rochellelewisUXUI}
+
+\mbox{}\\
+
+\textbf{Education:}\\
+Major: Imaging and Photographic Technology.\\
+Concentration: Commercial and Artistic Photography, Photojournalism.\\
+Rochester Institute of Technology.\\
+
+\mbox{}\\
+
+\textbf{Previous Employment:}\\
+Web Designer at Real Time Solutions, Albuquerque, NM.\\
+Creative Director for Iron Core Kettlebells, San Diego, CA.
+\end{frame}
+
+\begin{frame}
+\frametitle{About Skyler}
+
+\begin{itemize}
+   \item A full-stack web developer and designer. Does work in both the front-end and the back-end.
+   \item Formed a company called Design By Ninja with three other Deep Dive Coding graduates. Working on freelance dev work as well as a dynamic scheduling app called Punctuality.
+   \item Has been coding in various languages and settings for at least five years. Has been making music equally as long under the handle Skylarity, both with a guitar and a computer.
+   \item Follow me: \resizebox{12pt}{!}{\includegraphics{../artifacts/twitter.pdf}} \href{https://twitter.com/skylarity}{@skylarity}
+\end{itemize}
+\end{frame}
+
+
+\section{Organization}
+\begin{frame}
+\frametitle{Organization}
+\begin{qotd}
+If I plan to learn, I must learn to plan.
+\end{qotd}
+\pause
+
+Take thorough notes throughout the class. Computer Science by its nature is a very cumulative subject and topics will depend on and relate to one another. Divide your notes into the following sections:
+
+\pause
+\begin{itemize}
+	\item Knowledge Base
+	\item Lexicon
+	\item Vit\ae
+\end{itemize}
+\end{frame}
+
+\subsection{Knowledge Base}
+
+\begin{frame}
+\frametitle{Knowledge Base}
+The knowledge base section will house all the technical topics presented in class. This includes but is not limited to:
+\begin{itemize}
+	\item HTML Tags
+	\item PHP Functions
+	\item JavaScript Functions
+	\item Code Samples
+\end{itemize}
+The knowledge base will build over time and will serve as a valuable reference both during the class and after graduation.
+\end{frame}
+
+\begin{frame}
+\frametitle{Lexicon \& Vit\ae}
+The lexicon section will serve as a glossary for all the terms we learn in this class. As the class progresses, we will learn the vocabulary of computer science, which is important to understanding the underlying concepts and in effectively communicating with other developers.
+
+\pause
+\mbox{}\\
+The vit\ae \mbox{} section will contain a collection of people who have made important contributions to computer science and web design. Knowing these people is significant to knowing how web design and progressed and why different choices were made by these people.
+\end{frame}
+
+\subsection{Directory Organization}
+\begin{frame}
+\frametitle{Directory Organization}
+A developer is only as organized as the directories that contain all his/her source files. It is essential to maintain a well-organized, scalable directory organization scheme.
+
+\pause
+\begin{defn}
+\textbf{scalability} is the ability of a system, network, or process to handle a growing amount of work in a capable manner or its ability to be enlarged to accommodate that growth. \cite{wiki-scalability}
+\end{defn}
+Good organization fuels scalability. Lay a foundation upon which future development can commence.
+\end{frame}
+
+\begin{frame}
+\frametitle{Directory Organization}
+Each project should contain one or more directories. Each directory should contain files that fill a similar role in the project.
+\begin{table}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Directory Name} & \textbf{Suggested Contents}\\
+\hline
+\texttt{images} & Image files\\
+\hline
+\texttt{lib} & Supporting PHP code\\
+\hline
+\texttt{etc} & Configuration files\\
+\hline
+\texttt{js} & JavaScript files\\
+\hline
+\texttt{css} & CSS files\\
+\hline
+\end{tabular}
+\caption{Suggested Directory Names \& Contents}
+\label{tbl:dirsuggest}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Directory Organization}
+Table \ref{tbl:dirsuggest} contains common directory names and what files one would expect to find in each directory. As files start to number in the hundreds and in the thousands (even the hundreds of thousands), directory organization is critical.
+
+\mbox{}\\
+These directory names are common names, but by no means the only possible names. Let the project dictate the need for directory names. Above all, make sure the directory organization of the project enhances scalability.
+\end{frame}
+
+\section{Software}
+\begin{frame}
+\frametitle{Software}
+Every software developer needs the proper tools in their tool kit. Among these are:
+\begin{itemize}
+	\item \textbf{Integrated Development Environment}: program to perform common development tasks, including:
+	\begin{itemize}
+		\item \textbf{Code Editor}: main window in the IDE that allows one to edit code
+		\item \textbf{File Transfer Client}: subsystem to copy \& synchronize files on the server
+		\item \textbf{Unit Test Runner}: subsystem to execute tests and verify code works as designed
+		\item \dots and so much more!
+	\end{itemize}
+	\item \textbf{Web Server}: d\ae mon to interpret \& serve PHP code
+	\item \textbf{\texttt{git}}: Program to synchronize source code among team members
+\end{itemize}
+In this class, we will be using all these tools.
+\end{frame}
+
+\subsection{$x$AMP}
+\begin{frame}
+\frametitle{$x$AMP}
+\begin{defn}
+The \textbf{AMP stack} refers to the \textbf{A}pache web server, \textbf{m}ySQL database server, and \textbf{P}HP being used in combination to create a complete web platform.
+\end{defn}
+\pause
+\begin{defn}
+A \textbf{platform} is a set of hardware and/or software on which software program(s) can run.
+\end{defn}
+\pause
+The $x$ in the $x$AMP platform denotes which operating system the AMP stack is running. Specifically, $L$ is Linux, $M$ is Mac, and $W$ is Windows. So, AMP running on Linux is LAMP.
+\end{frame}
+
+\subsection{\texttt{SCP} \& \texttt{SSH}}
+\begin{frame}
+\texttt{SSH} is a mnemonic for \textbf{S}ecure \textbf{SH}ell. \texttt{SCP} is \texttt{SSH}'s file transfer subsystem. \texttt{SSH} is used very commonly in real world deployments and all commands and file transfers conducted are fully encrypted \& secure. To use \texttt{SSH}, one needs:
+\begin{itemize}
+	\item Username
+	\item Password and/or \texttt{SSH} key
+	\item Server to Connect to
+\end{itemize}
+\texttt{SSH} keys, while requiring more effort to setup, are recommended over passwords because they are more secure and can be used to authenticate to multiple systems.
+\end{frame}
+
+\subsection{\texttt{git}}
+\begin{frame}
+\frametitle{\texttt{git}}
+\texttt{git} is a software configuration management system.
+\pause
+\begin{defn}
+A \textbf{software configuration management system} is a system that tracks and controls changes to software and facilitates collaboration among team members.
+\end{defn}
+\pause
+\texttt{git} will be covered in great detail later this week. For now, we will install and test \texttt{git} and sign up for GitHub.
+\end{frame}
+
+\begin{frame}
+\frametitle{Works Cited}
+\bibliography{introduction}
+\end{frame}
+
+\end{document}
