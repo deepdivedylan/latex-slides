@@ -1,0 +1,194 @@
+\documentclass[aspectratio=169]{beamer}
+
+% because we need to claim weird things
+\newtheorem{claim}{Claim}
+\newtheorem{defn}{Definition}
+%\newtheorem{lemma}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{vita}{Vit\ae}
+\newtheorem{qotd}{Quote of the Day}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{ulem}
+\bibliographystyle{unsrt}
+
+% background image
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{../artifacts/stemulus.pdf}%
+}
+\setbeamertemplate{caption}[numbered]
+\lstset{%
+	breaklines=true,
+	captionpos=b,
+	frame=single,
+	keepspaces=true,
+	showstringspaces=false
+}
+
+% page numbers
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+% presentation header
+\usetheme{Warsaw}
+\title{Week 4: File Input \& Output}
+\author{Dylan Lane McDonald}
+\institute{CNM STEMulus Center\\Web Development with PHP}
+\date{\today}
+
+\begin{document}
+\lstset{language=Java}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Streams}
+\begin{frame}
+\frametitle{Streams}
+\begin{defn}
+A \textbf{stream} is a mechanism for making data available over time.
+\end{defn}
+Streams can be likened to the counterparts in the natural world in the sense that both computer science and geophysical streams consist of:
+\begin{itemize}
+	\item \textbf{Source}: where the material originates
+	\item \textbf{Direction}: deterministic path the material must follow
+	\item \textbf{Destination}: where the material will end up
+\end{itemize}
+In computer science all file and ``file-like'' operations are generalized as streams. Examples of streams include:
+\begin{itemize}
+	\item \textbf{File Operations}: reading and writing local files
+	\item \textbf{HTTP Requests}: connecting to and communicating with web servers
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Examples of Streams}
+Table \ref{tbl:streams} compares different streams from both the computer science and geophysical world.
+\begin{table}
+\begin{tabular}{|l|l|l|l|}
+\hline
+& \textbf{Source} & \textbf{Direction} & \textbf{Destination}\\
+\hline
+\textbf{R\'{i}o Grande} & San Juan Mountains, CO & south & Cameron County, TX\\
+\hline
+\textbf{HTTP Connection} & \url{https://www.cnm.edu/} & read-only & web browser\\
+\hline
+\textbf{Saving a File} & \texttt{local-file.txt} & read/write & hard disk\\
+\hline
+\end{tabular}
+\caption{Examples of Streams}
+\label{tbl:streams}
+\end{table}
+
+Note the ``direction'' of a computer science stream simply denotes whether the stream is readable, writable, or both.
+\end{frame}
+
+\subsection{PHP Stream Contexts}
+\begin{frame}[fragile]
+\frametitle{PHP Stream Contexts}
+PHP stream contexts modify and enhance the stream opened in PHP. Contexts are created using the \href{http://php.net/manual/en/function.stream-context-create.php}{\texttt{stream\_context\_create()}} and then can be added to any stream.
+\begin{lstlisting}[caption=Using Context to Create an HTTP Stream,label=lst:http]
+$options = array();
+$options["http"] = array();
+$options["http"]["method"] = "GET";
+$options["http"]["header"] = "Cookie: foo=bar\r\n";
+$context = stream_context_create($options);
+$fd = fopen("http://www.cnm.edu/", "rb", false, $context);
+fpassthru($fd);
+fclose($fd);
+\end{lstlisting}
+Listing \ref{lst:http} uses context to create a HTTP stream.
+\end{frame}
+
+\section{Stream Considerations}
+\subsection{General}
+\begin{frame}[fragile]
+\frametitle{General Considerations}
+Streams are external entities and \textbf{always} subject to failure. When opening a stream of any kind, \textbf{always} verify the stream was opened successfully. For instance, when opening a stream with \href{http://php.net/manual/en/function.fopen.php}{\texttt{fopen()}}, always compare to \texttt{false} to detected a failed stream before using it.
+\begin{lstlisting}[caption=Verifying a Stream,label=lst:fopen]
+$fd = fopen("http://www.cnm.edu/", "rb", false, $context);
+if($fd === false) {
+  throw(new RuntimeException("Unable to open HTTP stream"));
+}
+\end{lstlisting}
+Listing \ref{lst:fopen} takes the \texttt{fopen()} from Listing \ref{lst:http} and throws an exception when it fails.
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{fopen()} Modes}
+By far, the most common function to create a stream is  \href{http://php.net/manual/en/function.fopen.php}{\texttt{fopen()}}. \texttt{fopen()}'s second parameter is the \textbf{mode} in which the stream is opened it.
+\begin{table}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Mode} & \textbf{Comment} & \textbf{Create?}\\
+\hline
+r & read only & start at the beginning & No\\
+\hline
+r+ & read/write & start at the beginning & No\\
+\hline
+w & write only & overwrite the stream & Yes\\
+\hline
+w+ & read/write & overwrite the stream & Yes\\
+\hline
+a & write only & start at the end of the stream & Yes\\
+\hline
+a+ & read/write & start at the end of the stream & Yes\\
+\hline
+x & write only & fail if the file already exists & Yes\\
+\hline
+x+ & read/write & fail if the file already exists & Yes\\
+\hline
+\end{tabular}
+\caption{Partial List of \texttt{fopen()} Modes}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{ASCII vs Binary Mode}
+\texttt{fopen()} and many other stream functions initialize in either ASCII or binary mode. ASCII mode translates newline characters from Windows (\texttt{\textbackslash r\textbackslash n}) to Unix (\texttt{\textbackslash n}), or vice versa. This has the net effect of transparently modifying files in your program. \textbf{This is rarely what you want.}
+
+\mbox{}\\
+\texttt{fopen()}'s default mode is PHP version/operating system/systems administrator/planet alignment dependent. \textbf{Never assume which mode you're in. \emph{Always} specify!} The PHP documentation explicitly says, ``For portability, it is strongly recommended that you always use the 'b' flag when opening files with \texttt{fopen()}.'' \cite{php-fopen} More in-depth discussion of this topic can be found at the C FAQ. \cite{cfaq}
+\end{frame}
+
+\subsection{File System}
+\begin{frame}
+\frametitle{File System}
+In addition to the general considerations, the permissions of the Apache web server must also be considered. The Apache web server is typically, and by default, configured as an underprivileged user that can't access very many system resources.
+
+\mbox{}\\
+In effect, all file operations run by PHP scripts are run by the Apache web server. Often, collaboration with the systems administrator will be necessary to grant the Apache web server access rights to the area(s) of the file system that need modification. While granting access to the Apache web server has very valid use cases, this opens up a great security hazard and must be handled with extreme caution both on the part of the systems administrator and web developer.
+\end{frame}
+
+\subsection{Network}
+\begin{frame}
+\frametitle{Network}
+Accessing a network stream presents three major concerns:
+\begin{itemize}
+	\item \textbf{Reliability}: network connections are by their very nature slow and subject to failure. Even when network operations succeed, they are very slow. \cite{latency, human-latency}
+	\item \textbf{Fragmentation}: network operations are conducted in \textbf{packets}, and sometimes packets are not transmitted in order or not at all.\footnote{This is known as \textbf{packet loss}.} Stream functions can handle fragmentation, but if and only if the developer properly accounts for fragmentation while using a network stream.
+	\item \textbf{Security}: using external network data presents an element of risk. Assess carefully as to whether this data is necessary. If it is necessary, assess the trustworthiness of the network stream and \textbf{always} sanitize inputs derived from networked sources.
+\end{itemize}
+With these considerations in mind, a developer can effectively use network streams to enhance the web site's features, interactivity, and usefulness.
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Works Cited}
+\bibliography{file-io}
+\end{frame}
+
+\end{document}
