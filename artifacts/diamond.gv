@@ -1,0 +1,19 @@
+digraph G {
+	/* default settings */
+	graph [fontname="Helvetica", fontsize=24];
+	node [fontname="Helvetica", fontsize=12];
+	edge [arrowhead=onormal,fontname="Helvetica"];
+	labelloc="t";
+    label="Diamond Problem";
+
+	/* nodes */
+	starter [label="Starter Interface"];
+	electricStarter [label="ElectricStarter Trait"];
+	sparkPlug [label="SparkPlug Trait"];
+	hybridCar [label="HybridCar Class"];
+	
+	starter -> electricStarter;
+	starter -> sparkPlug;
+	electricStarter -> hybridCar;
+	sparkPlug -> hybridCar;
+}

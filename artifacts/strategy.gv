@@ -1,0 +1,26 @@
+digraph G {
+	graph [fontname="Helvetica", fontsize=24, rankdir="LR"];
+	node [fontname="Helvetica", fontsize=12, shape=plaintext];
+	labelloc="t";
+    label="Strategy Design Pattern";
+	caller [
+		label = "<f0> Caller | <f1>",
+		shape = "record"
+	];
+	interface [
+		label = "<f0> Interface\nStarter | <f1> +start()",
+		shape = "record"
+	];
+	electricStarter [
+		label = "ElectricStarter | <f0> +start()",
+		shape = "record"
+	];
+	sparkPlug [
+		label = "SparkPlug | <f0> +start()",
+		shape = "record"
+	];
+	
+	interface:f0 -> caller:f0 [arrowhead=diamond];
+	electricStarter:f0 -> interface:f1 [arrowhead=onormal];
+	sparkPlug:f0 -> interface:f1 [arrowhead=onormal];
+}
