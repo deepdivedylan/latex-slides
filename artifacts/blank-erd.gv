@@ -1,0 +1,20 @@
+digraph G {
+	/* default settings */
+	graph [rankdir="LR"];
+	node [fontname="Helvetica"];
+	edge [style=invis];
+
+	subgraph first {
+		entity [shape=box];
+		relation [shape=diamond];
+		entity -> relation;
+	}
+	
+	subgraph second {
+		weakEntity [label="weak entity",shape=box,peripheries=2];
+		primaryKey [label=<<u>primary key</u>>];
+		weakEntity -> primaryKey;
+	}
+	
+	attribute;
+}
