@@ -11,6 +11,7 @@ Run the `win-setup-make/install.bat` as an administrator. This will install `mak
 The default [http://miktex.org/](MiKTeX) distribution does not include beamer. To install it, build one of the slidesets manually:
 
 `$ cd foo`
+
 `$ pdflatex foo.tex`
 
 This process should only need to be executed once per machine. Once beamer (and its dependencies) are installed, the normal `make` process should work.
