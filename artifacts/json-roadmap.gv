@@ -1,0 +1,23 @@
+digraph G
+{
+	"Register with API" [shape=box];
+	"Did you Read the Documentation?" [shape=diamond];
+	"Read the Documentation" [shape=box];
+	"Are you Sure!?" [shape=diamond];
+	"Make Test API Call" [shape=box];
+	"Read Top Down" [shape=box];
+	"Cut Out Superfluous Data" [shape=box];
+	"Did it Work?" [shape=diamond];
+	"Get Development Account" -> "Register with API";
+	"Register with API" -> "Did you Read the Documentation?";
+	"Did you Read the Documentation?" -> "Read the Documentation" [label="No"];
+	"Did you Read the Documentation?" -> "Read the Documentation" [label="Yes"];
+	"Read the Documentation" -> "Are you Sure!?";
+	"Are you Sure!?" -> "Read the Documentation" [label="No"];
+	"Are you Sure!?" -> "Make Test API Call" [label="OK Already!"];
+	"Make Test API Call" -> "Read Top Down";
+	"Read Top Down" -> "Cut Out Superfluous Data";
+	"Cut Out Superfluous Data" -> "Did it Work?";
+	"Did it Work?" -> "Read the Documentation" [label="No"];
+	"Did it Work?" -> "Integrate API Data in your App/Site" [label="Yes"];
+}
