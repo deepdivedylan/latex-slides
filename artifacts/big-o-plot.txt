@@ -1,0 +1,8 @@
+set terminal pdfcairo enhanced font "Helvetica Bold"
+set key right bottom
+set title "Comparison of Two Big O Algorithms"
+set xlabel "Problem Size"
+set ylabel "Time"
+set xr [0:20]
+set yr [0:5]
+plot log(x) / log(2) title "log(n)", x / 4 title "n"
