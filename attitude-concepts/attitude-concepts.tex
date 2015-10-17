@@ -1,0 +1,149 @@
+\documentclass[aspectratio=169]{beamer}
+
+% because we need to claim weird things
+\newtheorem{claim}{Claim}
+\newtheorem{defn}{Definition}
+%\newtheorem{lemma}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{vita}{Vit\ae}
+\newtheorem{qotd}{Quote of the Day}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{ulem}
+\bibliographystyle{unsrt}
+
+% background image
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{../artifacts/stemulus.pdf}%
+}
+\setbeamertemplate{caption}[numbered]
+\lstset{%
+	breaklines=true,
+	captionpos=b,
+	frame=single,
+	keepspaces=true
+}
+
+% page numbers
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+% presentation header
+\usetheme{Warsaw}
+\title{Week 1: Programming Concepts}
+\author{Dylan Lane McDonald}
+\institute{CNM STEMulus Center\\Web Development with PHP}
+\date{\today}
+
+\begin{document}
+\lstset{language=HTML}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Who Are We?}
+\subsection{Who Are We?}
+\begin{frame}
+\frametitle{Who Are We?}
+What are we training to be?
+\begin{itemize}
+	\item Software Engineer: one who writes software
+	\pause
+	\item Computer Scientist: one who uses sound mathematical principles to solve problems
+	\pause
+	\item Software Architect: one who designs software programs so software engineers can implement them
+	\pause
+	\item Web Developer: one who writes software for the web programming paradigm
+\end{itemize}
+\pause
+So who are we\dots?
+\pause
+\mbox{}\\
+\textbf{All four of them!}
+\end{frame}
+
+\subsection{What Are We Doing?}
+\begin{frame}
+\frametitle{What Are We Doing?}
+As mentioned in the last slide, we are learning the web programming paradigm.
+\pause
+\begin{defn}
+A \textbf{paradigm} is how a programming language is structured and thought about. Each paradigm is specialized to the problems it aims to solve.
+\end{defn}
+\pause
+There are five major paradigms and dozens of minor paradigms. Each paradigm is specialized to a class of problems. Problems can be solved by multiple paradigms and there are advantages and disadvantages of each.
+\end{frame}
+
+\begin{frame}
+\frametitle{Programming Paradigms}
+Common paradigms include:
+\begin{itemize}
+	\item Imperative: programming step-by-step using procedures (C)
+	\pause
+	\item Functional: programming using mathematical functions (Haskell)
+	\pause
+	\item Object-oriented: programming by modeling each player in the program (Java)
+	\pause
+	\item Logic: programming by axiomatic logical statements (Prolog)
+	\pause
+	\item Symbolic: programming by manipulating formulas \& symbols (LISP)
+\end{itemize}
+\end{frame}
+
+\section{How Do We Succeed?}
+\subsection{How Do We Use It?}
+\begin{frame}
+\frametitle{How Do We Use It?}
+Programming languages are used in three different ways:
+\begin{itemize} 
+	\item Compiled: Source code is passed to a \textit{compiler}, which takes the source code and transforms in into \textit{machine code}, which is directly executable by the CPU (C)
+	\item Interpreted: Source code is passed to an \textit{interpreter}, which executes the source code line-by-line as the code is encountered (PHP)
+	\item Hybrid: Source code is compiled into an intermediate, optimized format called \textit{byte code} that is saved and passed to an interpreter when it needs to execute (Java)
+\end{itemize}
+The other languages we will be covering, JavaScript \& SQL, are also interpreted.
+\end{frame}
+
+\subsection{How Do We Write Better Code?}
+\begin{frame}
+\frametitle{How Do We Write Better Code?}
+Code maintainability is essential. Non readable, non maintainable code precludes development and is a hindrance to the team. Code can be made easy-to-read by:
+\begin{itemize}
+	\item Properly indenting the code at each logical level
+	\item Using variable names that concisely describe what the variable does
+	\item Sticking to one variable capitalization convention\footnote{In this class, ``camelBackVariables'' are preferred.}
+	\item Thoroughly commenting code as you write it
+	\item Exercising good \texttt{git} etiquette\dots
+	\pause
+	\begin{itemize}
+		\item Commit early, commit often!
+		\item Write descriptive comments in the \texttt{git commit} journal
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{How Should I Act?}
+\begin{frame}
+\frametitle{How Should I Act?}
+Attitude is everything! Computer Science is a challenging field in which you are part of a team. Separate yourself by:
+\begin{itemize}
+	\item \textbf{\underline{\emph{TENACITY}}}: Things \textbf{will} go wrong at some point. Great programmers persist, keep their frustrations in check, and do what it takes to climb the inevitable brick walls.
+	\item \textbf{Teamwork}: Cooperation and being approachable is a must. You will be working side-by-side with people and the more you help the team, the more you help yourself.
+	\item \textbf{Empathy}: Again, this can be a frustrating field at times. Understanding and taking the point of view of an upset end-user will not only defuse a volatile situation, but also help you arrive at a solution.
+\end{itemize}
+\end{frame}
+
+\end{document}
