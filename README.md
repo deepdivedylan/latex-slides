@@ -4,7 +4,7 @@ Deep Dive Coding Bootcamp LaTeX Slides
 # Windows Setup
 To use the repository on Microsoft Windows, `make` needs to be installed. To install it:
 
-Run the `win-install-make/install.bat` as an administrator. This will install `make` to the default `git` installation directory.
+Run the `win-setup-make/install.bat` as an administrator. This will install `make` to the default `git` installation directory.
 
 **Assumption:** All the following commands have been tested in `git bash`, version 2.5. Execute all commands in `git bash`, as it loads all the dependencies automatically.
 
