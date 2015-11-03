@@ -82,71 +82,68 @@ JavaScript is an \textbf{interpreted} language run by a JavaScript engine, norma
 JavaScript is enabled on most end user's web browsers and is used in creating responsive, dynamic, and fun sites.
 \end{frame}
 
-\section{JavaScript Syntax}
-\subsection{Variables}
+\section{Events \& Closures}
+\subsection{Events}
 \begin{frame}
-\frametitle{Variables}
+\frametitle{Javascript Events}
+An event can roughly be categorized into one or both of the following categories:
+\begin{itemize}
+	\item Something the browser does
+	\item Something the user does
+\end{itemize}
+
+\pause
+\mbox{}\\
+Events are the centerpiece of creating interactive web sites. Whether flat JavaScript or a framework such as Angular or jQuery are used, reacting to events is the key to creating dynamic and interactive web sites.
+
+\pause
+\mbox{}\\
+Events map everything from user interaction such as key presses, mouse movements, and scrolls to network events such as loads and going offline.
+\end{frame}
+
+\begin{frame}
+\frametitle{Example Events}
+Events are a reaction to a user's action on a web site. Table \ref{tbl:events} lists a very small subset of possible JavaScript events.
+\begin{table}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Event} & \textbf{Comment}\\
+\hline
+click & when a user clicks on an element\\
+\hline
+change & when a user changes an input field\\
+\hline
+drag & when a user drags an element\\
+\hline
+drop & when a user drops an element onto another\\
+\hline
+scroll & when a user scrolls (desktop) or swipes (mobile)\\
+\hline
+\end{tabular}
+\caption{Common JavaScript Events}
+\label{tbl:events}
+\end{table}
+
+As always, a more exhaustive list of all the possible events are available at the Mozilla Developer Network. \cite{mdn} 
+\end{frame}
+
+\subsection{Closures}
+\begin{frame}
+\frametitle{Closures}
 \begin{defn}
-A \textbf{variable} is a storage location and an associated symbolic name (an identifier) which contains some known or unknown quantity or information, a value. \cite{wiki-variable}
-\end{defn}
-\pause
-A JavaScript variable is assigned like so:\\
-\texttt{\textbf{var} answer = 42; // variable directly assigned\\
-\textbf{var} question; // variable created with no value\\
-\quad\quad$\vdots$\\
-question = "What is the answer?"; // variable assigned later}
-\end{frame}
-
-\subsection{\texttt{if} Block}
-\begin{frame}
-\frametitle{\texttt{if} Block}
-An \texttt{if} block is a decision point where JavaScript decides whether to perform one action or another. For instance:
-
-\pause
-\mbox{}\\
-\texttt{if(answer == 42) \{\\
-\quad console.log("We found the answer.");\\
-\} else \{\\
-\quad console.log("404 answer not found");\\
-\}
-}
-\end{frame}
-
-\subsection{Functions}
-\begin{frame}
-\frametitle{Functions}
-\begin{defn}
-A \textbf{function} is an executable unit that takes in zero or more inputs, performs a task, and returns zero or more outputs. Functions can be called multiple times with multiple inputs and are ideal for tasks that need to be performed many times.
+A \textbf{closure} is a JavaScript function that generates another function. The advantage of a closure is to generalize functionality for use cases that only vary slightly.
 \end{defn}
 
 \pause
-A good way to think of functions is to imagine yourself commanding a factory worker to go and perform a task for you. You tell the worker what to do and provide what he needs (input), he performs the task, and hands in the results (outputs).
-\end{frame}
-
-\begin{frame}
-\frametitle{Functions}
-\begin{figure}
-\resizebox{60mm}{!}{\includegraphics{../artifacts/function.pdf}}
-\caption{Visual representation of a function}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Functions}
-The syntax for functions are:\\
-\mbox{}\\
-// define function name \& inputs\\
-\texttt{function addTwoNumbers(first, second) \{\\
-\quad var sum = first + second; // perform task\\
-\quad return(sum); // return the outputs\\
-\}
-}
+An example use case of a closure is to greet the user in many different languages. Here, we have a constant and a variable:
+\begin{itemize}
+	\item \textbf{Constant:} the user's name
+	\item \textbf{Variable:} the exact words in the user's native language
+\end{itemize}
 
 \pause
-\mbox{}\\
-All functions start with the keyword \textbf{function}. Only functions that return an output end with a \textbf{return} statement.
+Using a closure, one can boilerplate the words in the particular language and concentrate on the only variable: the user's name. The use of closures is vast in JavaScript frameworks such as Angular and jQuery, where closures are applied to multiple elements at once using class selectors.
 \end{frame}
-
 
 \begin{frame}
 \frametitle{Works Cited}
