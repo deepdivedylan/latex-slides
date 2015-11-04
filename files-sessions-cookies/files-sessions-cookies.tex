@@ -75,7 +75,7 @@ Files can be uploaded using HTML forms using the \texttt{file} type of the \text
 Always do very restrictive verification on files. Verify \textbf{both} on extension and MIME type.
 \begin{lstlisting}[caption=Verifying a File,label=code:file-verify]
 $goodExts = array("jpg", "png");
-$goodTypes = array("image/jpeg", image/png");
+$goodTypes = array("image/jpeg", "image/png");
 $name = $_FILES["file"]["name"];
 $extension = end(explode(".", $name));
 $type = $_FILES["file"]["type"];
