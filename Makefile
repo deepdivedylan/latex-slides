@@ -16,8 +16,8 @@ clean:
 # install: all
 ifneq "$(wildcard $(DEST_DIR) )" ""
 	@echo "OK"
-	CAN_INSTALL = 1	
+	CAN_INSTALL = 1
 endif
 
 install: all
-	@if test -d $(DEST_DIR); then echo cp $(PDF_FILES) $(DEST_DIR); else echo installation directory $(DEST_DIR) does not exist; exit 1; fi
+	@if test -d $(DEST_DIR); then cp $(PDF_FILES) $(DEST_DIR); else echo installation directory $(DEST_DIR) does not exist; exit 1; fi
