@@ -108,8 +108,62 @@ In case \ref{enum:accept}, the promise is \textbf{accepted}. Cases \ref{enum:no-
 
 \section{Angular Components}
 \subsection{Services}
+\begin{frame}
+\frametitle{Services}
+\begin{defn}
+A \textbf{service} is a layer that rides on an asynchronous operation (e.g., a REST API endpoint) that uses a promise to handle the latency and results.
+\end{defn}
+
+A service acts as a bridge from an asynchronous operation to a promise object, where it can processed and interpreted by controllers. Services are normally a REST API endpoint, but can be any asynchronous event, such as a click event, an exception, a redirect, or a timer. All services will have the following properties:
+\begin{itemize}
+	\item \textbf{Input:} Parameter(s) needed to fire up the service
+	\item \textbf{Output:} Promise containing the results when they are ready
+\end{itemize}
+
+Services standardize asynchronous events such as AJAX and DOM events and provide a common API to handle them.
+\end{frame}
+
 \subsection{Controllers}
+\begin{frame}
+\frametitle{Controllers}
+Controllers are the focal point for Angular development. The definition is identical as from the MVC design pattern. Each controller is \emph{dependency injected} with the services and other dependencies it requires.
+
+\begin{defn}
+\textbf{Dependency Injection} is a design pattern in which a dependent object is dynamically injected into an object's state variables.
+\end{defn}
+
+Dependency Injection is the center of Angular's flexibility: what one object needs can be determined on an individual case-by-case basis by the developer and dynamically loaded and instantiated by Angular on demand. This way, only the objects needed are loaded--no more, no less. Dependency Injection is a main feature of Angular, and has been a core feature of software frameworks such as Java Spring for many years. \cite{dependency-injection, spring}
+\end{frame}
+
+\begin{frame}
+\frametitle{Using Controllers}
+Once dependencies have been (easily) resolved via dependency injection, controllers act as the main hub for data flowing to and from the backend. A controller can consist of anything the developer can imagine. From a pragmatic standpoint, controllers normally utilizes \texttt{\$scope}, which contains the state of the controller. \texttt{\$scope} largely consists of two items:
+
+\begin{enumerate}
+	\item \textbf{state variables:} state variables, many of which have been loaded after accepting or rejecting a promise from a service
+	\item \textbf{methods:} methods that respond to promises, user input, and other DOM events
+\end{enumerate}
+
+Using these two items, controllers act as the bridge from the backend to the frontend.
+\end{frame}
+
 \subsection{Directives}
+\begin{frame}
+\frametitle{Directives}
+\begin{defn}
+A \textbf{directive} is an Angularific marker in the DOM that uses custom HTML to inject an Angular customized behavior on the DOM. 
+\end{defn}
+The main idea of a directive is to define a generalized behavior and inject it as necessary using standard HTML syntax. \cite{directives} Directives can be custom HTML attributes, tags, classes, or comments. Angular has many predefined directives:
+
+\begin{itemize}
+	\item \textbf{ng-class:} Use a class if a condition is true.
+	\item \textbf{ng-repeat:} Loop through an array in \texttt{\$scope}, \textbf{foreach} style.
+	\item \textbf{ng-show:} Show if a condition is true.
+\end{itemize}
+
+The power of directives is that one can specify directives to inject anything into the DOM, \texttt{\$scope}, etc.
+\end{frame}
+
 \subsection{Angular Bootstrap}
 \begin{frame}
 \frametitle{Angular Bootstrap}
@@ -125,7 +179,7 @@ The \textbf{Angular Bootstrap} project provides a freely available set of direct
 \dots and more. \cite{angular-bootstrap}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[allowframebreaks]
 \frametitle{Works Cited}
 \bibliography{angular}
 \end{frame}
