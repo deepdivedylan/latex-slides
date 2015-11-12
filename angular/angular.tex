@@ -1,0 +1,133 @@
+\documentclass[aspectratio=169]{beamer}
+
+% because we need to claim weird things
+\newtheorem{claim}{Claim}
+\newtheorem{defn}{Definition}
+%\newtheorem{lemma}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{vita}{Vit\ae}
+\newtheorem{qotd}{Quote of the Day}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{ulem}
+\bibliographystyle{unsrt}
+
+% background image
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{../artifacts/stemulus.pdf}%
+}
+\setbeamertemplate{caption}[numbered]
+\lstset{%
+	breaklines=true,
+	captionpos=b,
+	frame=single,
+	keepspaces=true
+}
+
+% page numbers
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+% presentation header
+\usetheme{Warsaw}
+\title{Introduction to Angular}
+\author{Dylan Lane McDonald}
+\institute{CNM STEMulus Center\\Web Development with PHP}
+\date{\today}
+
+\begin{document}
+\lstset{language=HTML}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Angular Architecture}
+\subsection{Overview}
+\begin{frame}
+\frametitle{Angular Architecture}
+Angular is a ``superheroic'' Model-View-Whatever (MVW) framework that separates the concerns of the user interface, how the front end is updated, and how the front end is connected to the backend. Angular is highly modular and consists of reusable components that can be integrated together rapdily to accomplish any use case.
+
+\begin{itemize}
+	\item \textbf{Modularity:} Angular consists of several types of modular components that accomplish one task well.
+	\item \textbf{Two Way Binding:} When a variable is updated by one component, it is automatically updated in both the backend and frontend components.
+	\item \textbf{Promises:} Angular vastly simplifies grabbing data from AJAX and other dynamic components by providing a common API.
+	\item \textbf{Templating:} Scope variables can be integrated into a template, providing a common view for all objects.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Angular Architecture}
+\begin{figure}
+\includegraphics[scale=0.25]{../artifacts/angular-architecture.pdf}
+\caption{Angular Architecture}
+\label{fig:angular-architecture}
+\end{figure}
+\end{frame}
+
+\subsection{REST}
+\begin{frame}
+\frametitle{Representational State Transfer (REST)}
+\begin{defn}
+\textbf{REST}, a mnemonic for \textbf{Representational State Transfer}, is a software architectural pattern that lays out how to interchange data amongst different sites.
+\end{defn}
+
+\mbox{}\\
+REST allows sites with different backends, different languages, different use cases, etc. to easily exchange information without the complication of writing site-to-site specific integration code. REST rides on top of standard HTTP verbs to perform a standard set of operations. Using the ubiquity of HTTP, REST is an easy-to-program, agreed upon standard for exchanging data among sites.
+\end{frame}
+
+\subsection{Promises}
+\begin{frame}
+\frametitle{Promises}
+\begin{defn}
+A \textbf{promise} is a service that helps one run a method asynchronously and use the return values (or exceptions) when they are available.
+\end{defn}
+
+\mbox{}\\
+A promise can be thought of as a ``latent if'' that allows for asynchronous operations to process as they happen. \cite{promise} For instance, suppose a HTTP request is made to an external API. The promise will \textbf{wait} and inform Angular of three possible outcomes:
+\begin{enumerate}
+	\item \label{enum:accept}\textbf{Successful Contact \& Data:} Data was returned successfully
+	\item \label{enum:no-data}\textbf{Successful Contact, Failure on Data:} The server had no data
+	\item \label{enum:bad-kitty}\textbf{Completely Unsuccessful:} The server was offline
+\end{enumerate}
+In case \ref{enum:accept}, the promise is \textbf{accepted}. Cases \ref{enum:no-data} \& \ref{enum:bad-kitty} are \textbf{rejected}.
+\end{frame}
+
+\section{Angular Components}
+\subsection{Services}
+\subsection{Controllers}
+\subsection{Directives}
+\subsection{Angular Bootstrap}
+\begin{frame}
+\frametitle{Angular Bootstrap}
+The \textbf{Angular Bootstrap} project provides a freely available set of directives that allow one to use Bootstrap's JavaScript components using Angular. Standard Bootstrap uses jQuery to drive its JavaScript components. Angular Bootstrap isolates the jQuery dependent components and eliminates the requirement to include jQuery or Bootstrap's JavaScript files. The components available include:
+
+\begin{itemize}
+	\item Carousels
+	\item Drop Down Menus
+	\item Modals
+	\item Typeaheads
+\end{itemize}
+
+\dots and more. \cite{angular-bootstrap}
+\end{frame}
+
+\begin{frame}
+\frametitle{Works Cited}
+\bibliography{angular}
+\end{frame}
+
+\end{document}
