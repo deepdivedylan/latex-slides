@@ -114,7 +114,7 @@ In case \ref{enum:accept}, the promise is \textbf{accepted}. Cases \ref{enum:no-
 A \textbf{service} is a layer that rides on an asynchronous operation (e.g., a REST API endpoint) that uses a promise to handle the latency and results.
 \end{defn}
 
-A service acts as a bridge from an asynchronous operation to a promise object, where it can processed and interpreted by controllers. Services are normally a REST API endpoint, but can be any asynchronous event, such as a click event, an exception, a redirect, or a timer. All services will have the following properties:
+A service acts as a bridge from an asynchronous operation to a promise object, where it can be processed and interpreted by controllers. Services are normally a REST API endpoint, but can be any asynchronous event, such as a click event, an exception, a redirect, or a timer. All services will have the following properties:
 \begin{itemize}
 	\item \textbf{Input:} Parameter(s) needed to fire up the service
 	\item \textbf{Output:} Promise containing the results when they are ready
