@@ -6,44 +6,41 @@ digraph G {
 	/* entities */
 	profile [shape=box];
 	tweet [shape=box];
-	favorite [shape=box,peripheries=2];
+	like [shape=box,peripheries=2];
 
 	/* primary keys */
 	profileId_pk [label=<<u>profileId</u>>];
 	tweetId_pk [label=<<u>tweetId</u>>];
 
-	/* foreign keys */
-	profileId_fk [label=<<u>profileId</u>>];
-
 	/* weak primary keys */
-	profileId_weak_pk [label=<<u>profileId</u>>];
-	tweetId_weak_pk [label=<<u>tweetId</u>>];
+	profileId_weak_pk [label=<<u>likeProfileId</u>>];
+	tweetId_weak_pk [label=<<u>likeTweetId</u>>];
 
 	/* relations */
 	writes [shape=diamond];
 	profile -> writes [label="1"];
 	writes -> tweet [label="n"];
-	favorites [shape=diamond];
-	profile -> favorites [label="m"];
-	favorites -> favorite [label="n"];
-	favorited [label="are favorited",shape=diamond];
-	tweet -> favorited [label="m"];
-	favorited -> favorite [label="n"];
+	likes [shape=diamond];
+	profile -> likes [label="m"];
+	likes -> like [label="n"];
+	liked [label="are liked",shape=diamond];
+	tweet -> liked [label="m"];
+	liked -> like [label="n"];
 
 	/* profile attributes */
 	profile -> profileId_pk;
-	profile -> email;
-	profile -> phone;
-	profile -> atHandle;
+	profile -> profileEmail;
+	profile -> profilePhone;
+	profile -> profileAtHandle;
 
 	/* tweet attributes */
 	tweet -> tweetId_pk;
-	tweet -> profileId_fk;
+	tweet -> tweetProfileId;
 	tweet -> tweetContent;
 	tweet -> tweetDate;
 
-	/* favorite attributes */
-	favorite -> profileId_weak_pk;
-	favorite -> tweetId_weak_pk;
-	favorite -> favoriteDate;
+	/* like attributes */
+	like -> profileId_weak_pk;
+	like -> tweetId_weak_pk;
+	like -> likeDate;
 }
