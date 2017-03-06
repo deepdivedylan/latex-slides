@@ -128,6 +128,21 @@ Humans are inevitably involved in the operation and development of any system. T
 Working as a cohesive team, these three roles can create a united front against attacks and create secure software.
 \end{frame}
 
+\subsection{Social Engineering}
+\begin{frame}
+\frametitle{Poker}
+Noted poker author David Sklansky defined the \emph{Fundamental Theorem of Poker}: \cite{sklansky}
+\begin{defn}
+	Every time you play a hand differently from the way you would have played it if you could see all your opponents' cards, they gain; and every time you play your hand the same way you would have played it if you could see all their cards, they lose. Conversely, every time opponents play their hands differently from the way they would have if they could see all your cards, you gain; and every time they play their hands the same way they would have played if they could see all your cards, you lose.
+\end{defn}
+Suppose you hold $8 \clubsuit$ $8 \spadesuit$ and the flop comes down {\color{red} $\textnormal{A} \heartsuit$ $\textnormal{K} \heartsuit$ $\textnormal{J} \diamondsuit$}. Your opponent bets out at you. Assuming you know they are holding {\color{red} $7 \heartsuit$ $6 \heartsuit$}, you should raise. If you don't raise, you have misplayed your hand.
+\end{frame}
+
+\begin{frame}
+\frametitle{Social Engineering}
+The previous slide alluded to poker. Poker and computer security share one very key thing in common: psychological manipulation in order to gain access to information. In poker, one induces one's opponent to give up information about their hand. In computer security, one disguises illegitimate requests for information as trustworthy queries for information.
+\end{frame}
+
 \section{Cryptography}
 \subsection{Meet the Players}
 \begin{frame}
@@ -212,7 +227,7 @@ Any symmetric encryption scenario is just as secure as the storage \& exchange o
 \textbf{Problem}: Alice wants to send a message to Bob securely.
 
 \mbox{}\\
-\textbf{Solution}: Alice sends her public key $P_a$ to Bob. Bob replies with his public key $P_b$. Alice then encrypts the message using her private key, $K_a$ and $P_b$. Bob receives the message and decrypts the message using his private key, $K_b$ and $P_a$. 
+\textbf{Solution}: Alice sends her public key $P_a$ to Bob. Bob replies with his public key $P_b$. Alice then encrypts the message using her private key, $K_a$ and $P_b$. Bob receives the message and decrypts the message using his private key, $K_b$ and $P_a$.
 
 \begin{defn}
 The scenario just outlined is known as \textbf{asymmetric encryption}. Asymmetric encryption is considered more secure because the public keys are by definition public and don't need to be protected. The private keys are assigned per user and one user doesn't want/need to know the other user's private key.
